@@ -21,9 +21,17 @@ public class EmployeePayrollServiceTest
 		EmployeePayrollService employeePayrollService;
 		employeePayrollService = new EmployeePayrollService(Arrays.asList(arrayOfEmployees));
 		employeePayrollService.writeEmployeeData(IOService.FILE_IO);
-		
+		System.out.println("\n****Writing the data****\n");
 		employeePayrollService.printData(IOService.FILE_IO);
 		long entries = employeePayrollService.countEntries(IOService.FILE_IO);
+		Assert.assertEquals(3, entries);
+	}
+
+	@Test
+	public void givenFile_WhenRead_ShouldReturnNumberOfEntries() {
+		System.out.println("\n ****Reading the data****\n");
+		EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+		long entries = employeePayrollService.readDataFromFile(IOService.FILE_IO);
 		Assert.assertEquals(3, entries);
 	}
 }
