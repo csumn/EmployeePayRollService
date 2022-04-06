@@ -19,6 +19,7 @@ public class EmployeePayrollService {
 		this.employeePayrollList = employeePayrollList;
 	}
 
+
 	public static void main(String[] args) {
 		System.out.println("WelCome to Employee Payroll Service");
 		ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<EmployeePayrollData>();
@@ -28,6 +29,16 @@ public class EmployeePayrollService {
 		employeePayrollService.writeEmployeeData(IOService.CONSOLE_IO);
 	}
 
+	public void printData(IOService fileIo) {
+		if(fileIo.equals(IOService.FILE_IO)) new EmployeePayrollFileIOService().printData();
+	}
+
+
+	public long countEntries(IOService fileIo) {
+		if(fileIo.equals(IOService.FILE_IO)) return new EmployeePayrollFileIOService().countEntries();
+		
+		return 0;
+	}
 	void writeEmployeeData(IOService ioService) {
 		if (ioService.equals(IOService.CONSOLE_IO))
 			System.out.println("\nwriting employee payroll data to console\n" + employeePayrollList);
